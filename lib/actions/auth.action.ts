@@ -132,3 +132,14 @@ export async function isAuthenticated() {
 }
 
 
+export async function logout() {
+  try {
+    const cookieStore = await cookies(); // ✅ Await the cookies() function
+    cookieStore.delete("session"); // ✅ Now delete the session cookie
+
+    return { success: true };
+  } catch (error) {
+    console.error("Logout failed:", error);
+    return { success: false, error: "Failed to log out" };
+  }
+}
